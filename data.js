@@ -37,7 +37,7 @@ createLazyLoadData = function() {
     var position = ['M', 'E'];
     var OrderID = 10248;
     for (var i = 0; i < 20000; i++) {
-        exports.lazyLoadData.push({
+        lazyLoadData.push({
             'OrderID': OrderID + i,
             'CustomerID': customerid[Math.floor(Math.random() * customerid.length)],
             'CustomerName': customername[Math.floor(Math.random() * customername.length)],
