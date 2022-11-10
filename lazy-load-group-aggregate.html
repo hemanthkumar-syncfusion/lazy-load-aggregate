@@ -56,8 +56,15 @@
         format: 'C2',
         width: 150
       },
+      {
+        field: 'Freight2',
+        headerText: 'Freight2',
+        editType: 'numericedit',
+        format: 'C2',
+        width: 150
+      },
       { field: 'ShipCountry', headerText: 'Ship Country', width: 150 },
-      { field: 'ShipCountry', headerText: 'Ship Country', width: 150 },
+      { field: 'Position', headerText: 'Position', width: 150 }
     ],
     height: 300,
     aggregates: [
@@ -76,8 +83,18 @@
           },
           {
             type: 'Max',
+            field: 'Freight2',
+            groupCaptionTemplate: 'Max : ${Max}'
+          },
+          {
+            type: 'Max',
             field: 'Freight',
             groupFooterTemplate: 'Max : ${Max}'
+          },
+          {
+            type: 'Sum',
+            field: 'Freight2',
+            groupFooterTemplate: 'Sum : ${Sum}'
           }
         ]
       }
