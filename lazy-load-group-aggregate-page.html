@@ -34,23 +34,72 @@
     
     var grid = new ej.grids.Grid({
         dataSource: lazyLoadmindataData,
-        allowFiltering: true,
         editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal' },
         toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
         allowSorting: true,
-        allowMultiSorting: true,
         allowPaging: true,
         pageSettings: { pageSize: 10 },
         allowGrouping: true,
         groupSettings: { enableLazyLoading: true, columns: ['CustomerID', 'Position'] },
         columns: [
-        { type: 'checkbox', width: 50 },
-        { field: 'OrderID', headerText: 'Order ID', textAlign: 'Right', width: 100, isPrimaryKey: true },
-        { field: 'CustomerID', headerText: 'Customer ID', width: 120, },
-        { field: 'Freight', headerText: 'Freight', textAlign: 'Right', editType: 'numericedit', width: 120, format: 'C2', allowEditing: false },
-        { field: 'ShipCountry', headerText: 'Ship Country', editType: 'dropdownedit', width: 150 },
-        { field: 'ShipRegion', headerText: 'Ship Region', editType: 'dropdownedit', width: 150, allowEditing: false }
-        ],
+      {
+        field: 'OrderID',
+        headerText: 'Order ID',
+        isPrimaryKey: true,
+        textAlign: 'Right',
+        width: 120
+      },
+      { field: 'CustomerID', headerText: 'Customer ID', width: 150 },
+      {
+        field: 'Freight',
+        headerText: 'Freight',
+        editType: 'numericedit',
+        format: 'C2',
+        width: 150
+      },
+      {
+        field: 'Freight2',
+        headerText: 'Freight2',
+        editType: 'numericedit',
+        format: 'C2',
+        width: 150
+      },
+      { field: 'ShipCountry', headerText: 'Ship Country', width: 150 },
+      { field: 'Position', headerText: 'Position', width: 150 }
+    ],
+    height: 300,
+    aggregates: [
+      {
+        columns: [
+          {
+            type: 'Sum',
+            field: 'Freight',
+            format: 'C2',
+            footerTemplate: 'Sum : ${Sum}'
+          },
+          {
+            type: 'Sum',
+            field: 'Freight',
+            groupCaptionTemplate: 'Sum : ${Sum}'
+          },
+          {
+            type: 'Max',
+            field: 'Freight2',
+            groupCaptionTemplate: 'Max : ${Max}'
+          },
+          {
+            type: 'Max',
+            field: 'Freight',
+            groupFooterTemplate: 'Max : ${Max}'
+          },
+          {
+            type: 'Sum',
+            field: 'Freight2',
+            groupFooterTemplate: 'Sum : ${Sum}'
+          }
+        ]
+      }
+    ]
 });
 grid.appendTo('#Grid');
 </script>
