@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en"><head>
+    <title>EJ2 Grid</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Typescript Grid Control">
+    <meta name="author" content="Syncfusion">
+    <script src="https://ej2.syncfusion.com/javascript/demos/grid/default/datasource.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script> 
+    
+    <script src="ej2.min.js"></script>
+    
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-base/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-grids/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-buttons/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-popups/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-navigations/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-dropdowns/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-lists/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-inputs/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-calendars/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-notifications/styles/material.css" rel="stylesheet">
+    <link href="https://cdn.syncfusion.com/ej2/20.3.47/ej2-splitbuttons/styles/material.css" rel="stylesheet">
+    
+    <script src="data.js" type="text/javascript"></script>
+  
+</head>
+<body>
+        <div id="Grid"></div>        
+
+<script >
+    ej.grids.Grid.Inject(ej.grids.Edit, ej.grids.Toolbar, ej.grids.Sort, ej.grids.Page, ej.grids.Group, ej.grids.LazyLoadGroup, ej.grids.Aggregate);
+    createLazyLoadData();
+    var grid = new ej.grids.Grid({
+        dataSource: lazyLoadData,
+        editSettings: { allowEditing: true, allowAdding: true, allowDeleting: true, mode: 'Normal' },
+        toolbar: ['Add', 'Edit', 'Delete', 'Update', 'Cancel'],
+        allowSorting: true,
+        pageSettings: { pageSize: 20 },
+        allowGrouping: true,
+        groupSettings: { enableLazyLoading: true, columns: ['CustomerID', 'Position'] },
+        columns: [
+      {
+        field: 'OrderID',
+        headerText: 'Order ID',
+        isPrimaryKey: true,
+        textAlign: 'Right',
+        width: 120
+      },
+      { field: 'CustomerID', headerText: 'Customer ID', width: 150 },
+      {
+        field: 'Freight',
+        headerText: 'Freight',
+        editType: 'numericedit',
+        format: 'C2',
+        width: 150
+      },
+      {
+        field: 'Freight2',
+        headerText: 'Freight2',
+        editType: 'numericedit',
+        format: 'C2',
+        width: 150
+      },
+      { field: 'ShipCountry', headerText: 'Ship Country', width: 150 },
+      { field: 'Position', headerText: 'Position', width: 150 }
+    ],
+    height: 300,
+    aggregates: [
+      {
+        columns: [
+          {
+            type: 'Sum',
+            field: 'Freight',
+            format: 'C2',
+            footerTemplate: 'Sum : ${Sum}'
+          },
+          {
+            type: 'Sum',
+            field: 'Freight',
+            groupCaptionTemplate: 'Sum : ${Sum}'
+          },
+          {
+            type: 'Max',
+            field: 'Freight2',
+            groupCaptionTemplate: 'Max : ${Max}'
+          },
+          {
+            type: 'Max',
+            field: 'Freight',
+            groupFooterTemplate: 'Max : ${Max}'
+          },
+          {
+            type: 'Sum',
+            field: 'Freight2',
+            groupFooterTemplate: 'Sum : ${Sum}'
+          }
+        ]
+      }
+    ]
+});
+grid.appendTo('#Grid');
+</script>
+</body></html>
